@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordenadas Bancárias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .vagas {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 10px;
+        }
+        .container {
+            background: rgb(58, 63, 131);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .info {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+        .investimento {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .valor-atual {
+            color: green;
+            font-weight: bold;
+        }
+        .valor-antigo {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: darkgreen;
+        }
+        .footer {
+            font-size: 12px;
+            color: gray;
+            margin-top: 20px;
+        }
+        .input-vagas {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .input-vagas input {
+            width: 80px;
+            padding: 5px;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .input-vagas button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let vagas = 50; // Defina o número inicial de vagas
+        function atualizarVagas() {
+            document.getElementById("vagas-restantes").innerText = vagas;
+        }
+        function alterarVagas() {
+            let novaQtd = document.getElementById("input-vagas").value;
+            if (!isNaN(novaQtd) && novaQtd >= 0) {
+                vagas = novaQtd;
+                atualizarVagas();
+            }
+        }
+        function enviarComprovativo() {
+            let mensagem = encodeURIComponent("OI LEONARDO, JÁ FIZ A INSCRIÇÃO, AÍ ESTÁ O MEU COMPROVATIVO:");
+            let contato = "258876260104";
+            window.location.href = `https://wa.me/${contato}?text=${mensagem}`;
+        }
+        window.onload = atualizarVagas;
+    </script>
+</head>
+<body>
+    <div class="vagas">Vagas restantes: <span id="vagas-restantes"></span></div>
+    <div class="input-vagas">
+        <label for="input-vagas">Alterar número de vagas:</label>
+        <input type="number" id="input-vagas" min="0">
+        <button onclick="alterarVagas()">Atualizar</button>
+    </div>
+    <div class="container">
+        <h2>Coordenadas Bancárias</h2>
+        <div class="info">
+            <p class="highlight">E-mola: 876260104</p>
+            <p><span class="highlight">Titular da conta E-mola:</span> Ercilia Augusto</p>
+            <p class="highlight">M-pesa: 845030580</p>
+            <p><span class="highlight">Titular da conta M-pesa:</span> Faisal Rui Genito</p>
+        </div>
+        <p class="investimento">Investimento <span class="valor-atual">MTS 2.000</span> <span class="valor-antigo">MTS 11.000</span></p>
+        <button class="btn" onclick="enviarComprovativo()">ENVIAR MEU COMPROVATIVO</button>
+        <p class="footer">M.R.D© 2025 – Todos os direitos reservados.<br>Ao selecionar ‘Enviar Comprovativo’, declaro que li e estou de acordo com os termos.</p>
+    </div>
+</body>
+</html>
