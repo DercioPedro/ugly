@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #000000;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -21,7 +21,7 @@
             margin-bottom: 10px;
         }
         .container {
-            background: rgb(58, 63, 131);
+            background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -67,58 +67,55 @@
         .btn:hover {
             background-color: darkgreen;
         }
+        .admin-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .admin-btn:hover {
+            background-color: #0056b3;
+        }
         .footer {
             font-size: 12px;
             color: gray;
             margin-top: 20px;
         }
-        .input-vagas {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .input-vagas input {
-            width: 80px;
-            padding: 5px;
-            text-align: center;
-            font-size: 16px;
-            margin-top: 5px;
-        }
-        .input-vagas button {
-            margin-top: 5px;
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-        }
     </style>
     <script>
-        let vagas = 50; // Defina o número inicial de vagas
+        let vagas = 100; // Número inicial de vagas
         function atualizarVagas() {
             document.getElementById("vagas-restantes").innerText = vagas;
-        }
-        function alterarVagas() {
-            let novaQtd = document.getElementById("input-vagas").value;
-            if (!isNaN(novaQtd) && novaQtd >= 0) {
-                vagas = novaQtd;
-                atualizarVagas();
-            }
         }
         function enviarComprovativo() {
             let mensagem = encodeURIComponent("OI LEONARDO, JÁ FIZ A INSCRIÇÃO, AÍ ESTÁ O MEU COMPROVATIVO:");
             let contato = "258876260104";
             window.location.href = `https://wa.me/${contato}?text=${mensagem}`;
         }
+        function autenticarAdministrador() {
+            let senha = prompt("Digite a senha de administrador:");
+            if (senha === "2025/2026") {
+                let novaQtd = prompt("Digite o novo número de vagas:");
+                if (!isNaN(novaQtd) && novaQtd >= 0) {
+                    vagas = novaQtd;
+                    atualizarVagas();
+                } else {
+                    alert("Número inválido!");
+                }
+            } else {
+                alert("Senha incorreta!");
+            }
+        }
         window.onload = atualizarVagas;
     </script>
 </head>
 <body>
     <div class="vagas">Vagas restantes: <span id="vagas-restantes"></span></div>
-    <div class="input-vagas">
-        <label for="input-vagas">Alterar número de vagas:</label>
-        <input type="number" id="input-vagas" min="0">
-        <button onclick="alterarVagas()">Atualizar</button>
-    </div>
+    <button class="admin-btn" onclick="autenticarAdministrador()">Alterar Vagas (Apenas Administrador)</button>
     <div class="container">
         <h2>Coordenadas Bancárias</h2>
         <div class="info">
